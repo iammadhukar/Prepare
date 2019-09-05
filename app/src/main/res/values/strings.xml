@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Prepare</string>
+    <string name="email_id">Email id</string>
+    <string name="password">Password</string>
+    <string name="signIn">signIn</string>
+    <string name="signUp">signUp</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="bpsc">BPSC</string>
+    <string name="upsc">UPSC</string>
+    <string name="railways">RAILWAYS</string>
+    <string name="bank">BANK</string>
+    <string name="start_test_msg">You are going to start BPSC test now. Please do not move from this application. Now Back button will not work till this test end.</string>
+    <string name="start_test">START TEST</string>
+    <string name="all_the_best">All the best !!!</string>
+    <string name="submit">SUBMIT</string>
+    <string name="next">NEXT</string>
+    <string name="prev">PREV</string>
+</resources>
