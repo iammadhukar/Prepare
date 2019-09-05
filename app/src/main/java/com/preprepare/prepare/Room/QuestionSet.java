@@ -4,6 +4,11 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.preprepare.prepare.Model.MyModel;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "questionTable")
 public class QuestionSet {
     @PrimaryKey(autoGenerate = true)
@@ -81,5 +86,18 @@ public class QuestionSet {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public QuestionSet(){}
+
+    public QuestionSet(List<MyModel> myModelList){
+        for(MyModel data : myModelList) {
+            this.question = data.getQuestion();
+            this.optionA = data.getOptionA();
+            this.optionB = data.getOptionB();
+            this.optionC = data.getOptionC();
+            this.optionD = data.getOptionD();
+            this.answer = data.getAnswer();
+        }
     }
 }

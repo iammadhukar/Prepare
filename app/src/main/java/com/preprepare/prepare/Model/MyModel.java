@@ -1,10 +1,20 @@
 package com.preprepare.prepare.Model;
 
 public class MyModel {
+    private int uid;
     private String question;
     private String optionA;
     private String optionB;
     private String optionC;
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
     private String optionD;
     private String answer;
 

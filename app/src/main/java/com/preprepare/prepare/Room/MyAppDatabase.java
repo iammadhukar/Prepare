@@ -7,7 +7,7 @@ import androidx.room.Entity;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {QuestionSet.class}, version = 1)
+@Database(entities = {QuestionSet.class}, version = 2)
 public abstract class MyAppDatabase extends RoomDatabase  {
 
     private static String DB_NAME = "AppDatabase";
@@ -17,7 +17,6 @@ public abstract class MyAppDatabase extends RoomDatabase  {
     public static synchronized MyAppDatabase getInstance(Context context){
         if (instance==null){
             instance = Room.databaseBuilder(context.getApplicationContext(), MyAppDatabase.class, DB_NAME)
-                    .allowMainThreadQueries()
                     .build();
         }
         return instance;

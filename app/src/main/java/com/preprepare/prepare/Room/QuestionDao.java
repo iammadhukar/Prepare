@@ -18,6 +18,6 @@ public interface QuestionDao {
     @Insert
     void inserAll(QuestionSet... questionSets);
 
-    @Delete
+    @Query("DELETE from questionTable")
     void deleteAll();
 }

@@ -1,11 +1,14 @@
 package com.preprepare.prepare;
 
+import android.content.Intent;
 import android.os.CountDownTimer;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.preprepare.prepare.VIewModel.MyViewModel;
+import com.preprepare.prepare.ViewModel.MyViewModel;
 
 public class Test extends AppCompatActivity {
 
@@ -49,6 +52,13 @@ public class Test extends AppCompatActivity {
 
         }.start();
 
+    }
+
+    public void onSubmit(View view){
+        myViewModel.myRepository.deleteData();
+        Toast.makeText(this, "Data deleted", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(this, Result.class);
+        startActivity(intent);
     }
 
     @Override

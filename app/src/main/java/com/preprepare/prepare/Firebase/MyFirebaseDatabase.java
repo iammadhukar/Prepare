@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.preprepare.prepare.Model.MyModel;
+import com.preprepare.prepare.Repository.MyRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,9 +30,11 @@ public class MyFirebaseDatabase {
     private ArrayList<MyModel> questionList;
     private String [] answers;
     private String question;
+    private MyRepository myRepository;
     MutableLiveData<List<MyModel>> myMutableData = new MutableLiveData<>();
 
-    public MyFirebaseDatabase(){
+    public MyFirebaseDatabase(MyRepository myRepository){
+        this.myRepository = myRepository;
         questionList= new ArrayList();
         myData = new HashMap<>();
         answers = new String [5];
@@ -80,6 +83,7 @@ public class MyFirebaseDatabase {
                 Log.d(TAG, "Size of list is : "+questionList.size());
                 setQuestionList(questionList);
                 myMutableData.setValue(questionList);
+                myRepository.saveDataToRoom(questionList);
             }
         });
         Log.d(TAG, "Size of list outside is : "+questionList.size());
