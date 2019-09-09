@@ -1,5 +1,7 @@
 package com.preprepare.prepare.Room;
 
+import android.util.Log;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,4 +22,7 @@ public interface QuestionDao {
 
     @Query("DELETE from questionTable")
     void deleteAll();
+
+    @Query("Select * from questionTable WHERE uid=:position")
+    MyModel getQuestionDetails(int position);
 }

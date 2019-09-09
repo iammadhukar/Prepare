@@ -90,14 +90,12 @@ public class QuestionSet {
 
     public QuestionSet(){}
 
-    public QuestionSet(List<MyModel> myModelList){
-        for(MyModel data : myModelList) {
-            this.question = data.getQuestion();
-            this.optionA = data.getOptionA();
-            this.optionB = data.getOptionB();
-            this.optionC = data.getOptionC();
-            this.optionD = data.getOptionD();
-            this.answer = data.getAnswer();
-        }
+    public QuestionSet(MyModel data){
+        this.question = data.getQuestion();
+        this.optionA = data.getOptionA();
+        this.optionB = data.getOptionB();
+        this.optionC = data.getOptionC();
+        this.optionD = data.getOptionD();
+        this.answer = data.getAnswer();
     }
 }

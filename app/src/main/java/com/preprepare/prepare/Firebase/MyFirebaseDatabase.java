@@ -1,5 +1,7 @@
 package com.preprepare.prepare.Firebase;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -32,6 +34,7 @@ public class MyFirebaseDatabase {
     private String question;
     private MyRepository myRepository;
     MutableLiveData<List<MyModel>> myMutableData = new MutableLiveData<>();
+    private Handler handler = new Handler();
 
     public MyFirebaseDatabase(MyRepository myRepository){
         this.myRepository = myRepository;
@@ -83,7 +86,15 @@ public class MyFirebaseDatabase {
                 Log.d(TAG, "Size of list is : "+questionList.size());
                 setQuestionList(questionList);
                 myMutableData.setValue(questionList);
-                myRepository.saveDataToRoom(questionList);
+
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        myRepository.saveDataToRoom(questionList);
+                    }
+                });
+
+//                myRepository.getQuestionDetails(1);
             }
         });
         Log.d(TAG, "Size of list outside is : "+questionList.size());
