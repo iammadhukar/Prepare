@@ -112,15 +112,27 @@ public class Test extends AppCompatActivity {
 
     public void onNextClick(View view){
         count++;
+        deSelectButton();
         myViewModel.getQuestionLiveData(count);
-
     }
 
     public void onPreviousClick(View view){
         if(count!=1){
             count--;
+            deSelectButton();
             myViewModel.getQuestionLiveData(count);
         }
+    }
+
+    private void deSelectButton(){
+        if (optionA.isChecked())
+            optionA.setChecked(false);
+        if (optionB.isChecked())
+            optionB.setChecked(false);
+        if (optionC.isChecked())
+            optionC.setChecked(false);
+        if (optionD.isChecked())
+            optionD.setChecked(false);
     }
 
     @Override
