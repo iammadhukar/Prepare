@@ -25,4 +25,7 @@ public interface QuestionDao {
 
     @Query("Select * from questionTable WHERE uid=:position")
     MyModel getQuestionDetails(int position);
+
+    @Query("UPDATE questionTable SET optionSelected =:selectedOption WHERE uid =:position ")
+    void updateSelectedAnswer(String selectedOption, int position);
 }

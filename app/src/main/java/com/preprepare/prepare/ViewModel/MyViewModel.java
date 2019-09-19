@@ -27,12 +27,16 @@ public class MyViewModel {
     }
 
     public LiveData<MyModel> getQuestionLiveData(int position){
-//        if (myRepository.myAppDatabase==null){
-//            return liveData;
-//        }else{
-//            liveData = myRepository.getQuestionDetails(position);
-//            return liveData;
-//        }
         return myRepository.getQuestionDetails(position);
+    }
+
+    public void updateSelectedAnswer(String selectedAnswer){
+        myRepository.updateSelectedAnswer(selectedAnswer);
+    }
+
+    public void onFinish(){
+        myModel=null;
+        myRepository.onFinish();
+        myRepository=null;
     }
 }

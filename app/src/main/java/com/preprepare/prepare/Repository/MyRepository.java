@@ -35,6 +35,7 @@ public class MyRepository extends ViewModel {
     private MyModel questionSet;
     private MyViewModel myViewModel;
     private MutableLiveData<MyModel> questionliveData;
+    private String selectedAnswer;
 
     public MyRepository(Context context, MyViewModel myViewModel){
         myFirebaseDatabase = new MyFirebaseDatabase(this);
@@ -77,6 +78,17 @@ public class MyRepository extends ViewModel {
 
             return questionliveData;
         }
+    }
+
+    public void updateSelectedAnswer(String selectedAnswer){
+        this.selectedAnswer = selectedAnswer;
+        UpdateSelectedAsyncTask updateSelectedAsyncTask = new UpdateSelectedAsyncTask();
+        updateSelectedAsyncTask.execute();
+
+    }
+
+    public void deleteDatabase(){
+        MyAppDatabase.destroyInstance();
     }
 
     class InsertAsyncTask extends AsyncTask<Void,Void,Void>{
@@ -137,6 +149,22 @@ public class MyRepository extends ViewModel {
             questionliveData.setValue(questionSet);
             Log.d(TAG,"Question is "+ questionSet.getQuestion());
         }
+    }
+
+    class UpdateSelectedAsyncTask extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            myAppDatabase.questionDao().updateSelectedAnswer(selectedAnswer,position);
+            return null;
+        }
+    }
+
+    public void onFinish(){
+        if (myFirebaseDatabase!=null)
+            myFirebaseDatabase=null;
+        if (myAppDatabase!=null)
+            myAppDatabase=null;
     }
 
 

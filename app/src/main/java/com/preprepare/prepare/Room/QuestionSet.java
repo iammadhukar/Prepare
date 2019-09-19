@@ -32,6 +32,10 @@ public class QuestionSet {
     @ColumnInfo(name = "answer")
     private String answer;
 
+    @ColumnInfo(name = "optionSelected")
+    private String optionSelected;
+
+
     public int getUid() {
         return uid;
     }
@@ -86,6 +90,14 @@ public class QuestionSet {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public String getOptionSelected() {
+        return optionSelected;
+    }
+
+    public void setOptionSelected(String optionSelected) {
+        this.optionSelected = optionSelected;
     }
 
     public QuestionSet(){}

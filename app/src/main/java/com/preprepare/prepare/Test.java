@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ public class Test extends AppCompatActivity {
     private int count = 1;
     private ProgressBar progressBar;
     private RadioButton optionA,optionB,optionC,optionD;
+    private RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class Test extends AppCompatActivity {
         optionC = findViewById(R.id.optionC);
         optionD = findViewById(R.id.optionD);
         number = findViewById(R.id.number);
+        radioGroup = findViewById(R.id.radioGrp);
 
         timer();
     }
@@ -105,38 +108,42 @@ public class Test extends AppCompatActivity {
 
     public void onSubmit(View view){
         myViewModel.myRepository.deleteData();
+        count=0;
+//        myViewModel.myRepository.deleteDatabase();
         Toast.makeText(this, "Data deleted", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Result.class);
         startActivity(intent);
     }
 
     public void onNextClick(View view){
+
+        RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+        String selectedAnswer = radioButton.getText().toString();
+        myViewModel.updateSelectedAnswer(selectedAnswer);
         count++;
-        deSelectButton();
+        radioGroup.clearCheck();
         myViewModel.getQuestionLiveData(count);
     }
 
     public void onPreviousClick(View view){
         if(count!=1){
             count--;
-            deSelectButton();
+            radioGroup.clearCheck();
             myViewModel.getQuestionLiveData(count);
         }
     }
 
-    private void deSelectButton(){
-        if (optionA.isChecked())
-            optionA.setChecked(false);
-        if (optionB.isChecked())
-            optionB.setChecked(false);
-        if (optionC.isChecked())
-            optionC.setChecked(false);
-        if (optionD.isChecked())
-            optionD.setChecked(false);
-    }
 
     @Override
     public void onBackPressed() {
         // super.onBackPressed();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        myViewModel.myRepository.deleteData();
+
+    }
+
 }
