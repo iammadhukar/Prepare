@@ -6,6 +6,17 @@ public class MyModel {
     private String optionA;
     private String optionB;
     private String optionC;
+    private String optionD;
+    private String answer;
+    private String optionSelected;
+
+    public String getOptionSelected() {
+        return optionSelected;
+    }
+
+    public void setOptionSelected(String optionSelected) {
+        this.optionSelected = optionSelected;
+    }
 
     public int getUid() {
         return uid;
@@ -15,10 +26,7 @@ public class MyModel {
         this.uid = uid;
     }
 
-    private String optionD;
-    private String answer;
-
-    public MyModel(int uid, String question, String optionA, String optionB, String optionC, String optionD, String answer){
+    public MyModel(int uid, String question, String optionA, String optionB, String optionC, String optionD, String answer, String optionSelected){
         this.uid = uid;
         this.question = question;
         this.optionA = optionA;
@@ -26,6 +34,7 @@ public class MyModel {
         this.optionC = optionC;
         this.optionD = optionD;
         this.answer = answer;
+        this.optionSelected = optionSelected;
     }
 
     public String getQuestion() {

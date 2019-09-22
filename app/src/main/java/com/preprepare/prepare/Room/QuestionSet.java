@@ -6,9 +6,6 @@ import androidx.room.PrimaryKey;
 
 import com.preprepare.prepare.Model.MyModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity(tableName = "questionTable")
 public class QuestionSet {
     @PrimaryKey()

@@ -28,4 +28,5 @@ public interface QuestionDao {
 
     @Query("UPDATE questionTable SET optionSelected =:selectedOption WHERE uid =:position ")
     void updateSelectedAnswer(String selectedOption, int position);
+
 }

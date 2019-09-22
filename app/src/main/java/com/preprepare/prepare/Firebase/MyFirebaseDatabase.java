@@ -75,7 +75,7 @@ public class MyFirebaseDatabase {
                                 answers[count]=value;
                                 count = count+1;
                             }
-                            questionList.add(new MyModel(i, question, answers[0], answers[1], answers[2], answers[3], answers[4]));
+                            questionList.add(new MyModel(i, question, answers[0], answers[1], answers[2], answers[3], answers[4],""));
                             Log.d(TAG, "Size of list is from inside : "+questionList.size());
 
                         }

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.preprepare.prepare.Model.MyModel;
+import com.preprepare.prepare.Room.MyAppDatabase;
 import com.preprepare.prepare.ViewModel.MyViewModel;
 
 public class Test extends AppCompatActivity {
@@ -68,6 +69,15 @@ public class Test extends AppCompatActivity {
                     optionC.setText(myModel.getOptionC());
                     optionD.setText(myModel.getOptionD());
                     number.setText(count+".");
+
+                    Log.d(TAG, "Selected answer is " + myModel.getOptionSelected());
+
+                    /*
+                    * Checking for selected answer
+                     */
+                    if (myModel.getOptionSelected()!=null)
+                        setSelectedAnswer(myModel);
+
                     progressBar.setVisibility(View.INVISIBLE);
                     getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     Log.d(TAG, "value is " + myModel.getQuestion());
@@ -76,6 +86,21 @@ public class Test extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void setSelectedAnswer(MyModel myModel){
+        if (myModel.getOptionA().equals(myModel.getOptionSelected())){
+            radioGroup.check(R.id.optionA);
+        }
+        if (myModel.getOptionB().equals(myModel.getOptionSelected())){
+            radioGroup.check(R.id.optionB);
+        }
+        if (myModel.getOptionC().equals(myModel.getOptionSelected())){
+            radioGroup.check(R.id.optionC);
+        }
+        if (myModel.getOptionD().equals(myModel.getOptionSelected())){
+            radioGroup.check(R.id.optionD);
+        }
     }
 
 
@@ -117,9 +142,12 @@ public class Test extends AppCompatActivity {
 
     public void onNextClick(View view){
 
-        RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
-        String selectedAnswer = radioButton.getText().toString();
-        myViewModel.updateSelectedAnswer(selectedAnswer);
+        if(radioGroup.getCheckedRadioButtonId()!=-1){
+            RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
+            String selectedAnswer = radioButton.getText().toString();
+            myViewModel.updateSelectedAnswer(selectedAnswer);
+        }
+
         if (count!=50) {
             count++;
             radioGroup.clearCheck();
