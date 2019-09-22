@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity(tableName = "questionTable")
 public class QuestionSet {
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey()
     private int uid;
 
     @ColumnInfo(name = "question")
@@ -103,6 +103,7 @@ public class QuestionSet {
     public QuestionSet(){}
 
     public QuestionSet(MyModel data){
+        this.uid=data.getUid();
         this.question = data.getQuestion();
         this.optionA = data.getOptionA();
         this.optionB = data.getOptionB();

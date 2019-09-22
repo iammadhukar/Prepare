@@ -120,9 +120,11 @@ public class Test extends AppCompatActivity {
         RadioButton radioButton = findViewById(radioGroup.getCheckedRadioButtonId());
         String selectedAnswer = radioButton.getText().toString();
         myViewModel.updateSelectedAnswer(selectedAnswer);
-        count++;
-        radioGroup.clearCheck();
-        myViewModel.getQuestionLiveData(count);
+        if (count!=50) {
+            count++;
+            radioGroup.clearCheck();
+            myViewModel.getQuestionLiveData(count);
+        }
     }
 
     public void onPreviousClick(View view){

@@ -19,6 +19,7 @@ public class MyModel {
     private String answer;
 
     public MyModel(int uid, String question, String optionA, String optionB, String optionC, String optionD, String answer){
+        this.uid = uid;
         this.question = question;
         this.optionA = optionA;
         this.optionB = optionB;

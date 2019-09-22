@@ -84,6 +84,8 @@ public class MyFirebaseDatabase {
 
 //                Log.d(TAG, String.valueOf(i));
                 Log.d(TAG, "Size of list is : "+questionList.size());
+                Log.d(TAG, "Second Uid is : "+questionList.get(2).getUid());
+                Log.d(TAG, "Second question is : "+questionList.get(2).getQuestion());
                 setQuestionList(questionList);
                 myMutableData.setValue(questionList);
 
@@ -98,6 +100,7 @@ public class MyFirebaseDatabase {
             }
         });
         Log.d(TAG, "Size of list outside is : "+questionList.size());
+
     }
 
     public List<MyModel> getQuestionList(){
