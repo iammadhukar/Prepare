@@ -10,70 +10,57 @@
 
 
     <EditText
-        android:id="@+id/emailId"
+        android:id="@+id/phoneNumber"
         android:layout_width="235dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="288dp"
+        android:layout_marginTop="172dp"
         android:ems="10"
-        android:hint="@string/email_id"
-        android:textColor="@color/gray"
+        android:hint="@string/phoneNo"
         android:inputType="textEmailAddress"
+        android:textColor="@color/gray"
         android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/otp"
         android:layout_width="238dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="164dp"
         android:ems="10"
-        android:hint="@string/password"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/gray"
+        android:hint="@string/otp"
         android:inputType="textPassword"
+        android:textColor="@color/gray"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailId" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
     <Button
         android:id="@+id/SignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="164dp"
+        android:layout_marginTop="44dp"
         android:background="@drawable/buttonshape"
         android:onClick="onSignInClick"
         android:text="@string/signIn"
         android:textColor="@color/background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/otp" />
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="196dp"
-        android:layout_marginLeft="196dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="134dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/buttonshape"
-        android:text="@string/signUp"
+        android:onClick="onGenerateOtpClicked"
+        android:text="@string/generateOTP"
         android:textColor="@color/background"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="124dp"
-        android:background="@android:color/darker_gray"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        tools:layout_editor_absoluteX="71dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginRight="52dp"
-        />
 </androidx.constraintlayout.widget.ConstraintLayout>

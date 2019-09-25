@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Welcome">
+        <activity android:name=".Welcome"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,13 +20,17 @@
         <activity
             android:name=".Result"
             android:label="@string/title_activity_result"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Test"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Bpsc" />
-        <activity android:name=".Dashboard" />
-        <activity android:name=".LoginPage"/>
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Bpsc"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Dashboard"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginPage"
+            android:screenOrientation="portrait"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
