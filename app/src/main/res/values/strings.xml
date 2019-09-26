@@ -17,6 +17,6 @@
     <string name="prev">PREV</string>
     <string name="title_activity_result">Result</string>
     <string name="generateOTP">Generate OTP</string>
-    <string name="phoneNo">Enter Phone Number</string>
+    <string name="phoneNo">Phone Number</string>
     <string name="otp">OTP</string>
 </resources>

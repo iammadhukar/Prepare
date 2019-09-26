@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.preprepare.prepare.Firebase.MyFirebaseDatabase;
+import com.preprepare.prepare.Model.FetchCorrectAndSelectedAnswer;
 import com.preprepare.prepare.Model.MyModel;
 import com.preprepare.prepare.Room.MyAppDatabase;
 import com.preprepare.prepare.Room.QuestionSet;
@@ -35,7 +36,10 @@ public class MyRepository extends ViewModel {
     private MyModel questionSet;
     private MyViewModel myViewModel;
     private MutableLiveData<MyModel> questionliveData;
+    private MutableLiveData<ArrayList<FetchCorrectAndSelectedAnswer>> calculationLiveData;
     private String selectedAnswer;
+    private CalculateResultAsyncTask calculateResultAsyncTask;
+    private ArrayList<FetchCorrectAndSelectedAnswer> calculationArrayList;
 
     public MyRepository(Context context, MyViewModel myViewModel){
         myFirebaseDatabase = new MyFirebaseDatabase(this);
@@ -46,6 +50,8 @@ public class MyRepository extends ViewModel {
         deleteAsyncTask = new DeleteAsyncTask();
 //        getQuestionAsyncTask = new GetQuestionAsyncTask();
         questionliveData = new MutableLiveData<>();
+        calculationLiveData = new MutableLiveData<>();
+        calculationArrayList = new ArrayList<>();
     }
 
     public LiveData<List<MyModel>> getDataFromFirebase() {
@@ -85,6 +91,14 @@ public class MyRepository extends ViewModel {
         UpdateSelectedAsyncTask updateSelectedAsyncTask = new UpdateSelectedAsyncTask();
         updateSelectedAsyncTask.execute();
 
+    }
+
+    public LiveData<ArrayList<FetchCorrectAndSelectedAnswer>> calculateResult(){
+        position=0;
+        calculationArrayList = new ArrayList<>();
+        calculateResultAsyncTask = new CalculateResultAsyncTask();
+        calculateResultAsyncTask.execute();
+        return calculationLiveData;
     }
 
     public void deleteDatabase(){
@@ -157,6 +171,26 @@ public class MyRepository extends ViewModel {
         protected Void doInBackground(Void... voids) {
             myAppDatabase.questionDao().updateSelectedAnswer(selectedAnswer,position);
             return null;
+        }
+    }
+
+    class CalculateResultAsyncTask extends AsyncTask<Void, Void, Void>{
+
+        FetchCorrectAndSelectedAnswer fetchCorrectAndSelectedAnswerList;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            for (int i=0;i<50;i++) {
+                position++;
+                fetchCorrectAndSelectedAnswerList = myAppDatabase.questionDao().calculateResult(position);
+                calculationArrayList.add(fetchCorrectAndSelectedAnswerList);
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            calculationLiveData.setValue(calculationArrayList);
         }
     }
 

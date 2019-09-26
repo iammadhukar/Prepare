@@ -34,7 +34,7 @@ public class LoginPage extends AppCompatActivity {
     private static final String TAG = "LoginPage";
     private static final int RC_SIGN_IN = 101;
 
-    private Button signIn, signUp;
+    private Button signIn, generateOtp;
     private EditText phoneNumberEditText, otpEditText;
     private String number;
     private FirebaseAuth mAuth;
@@ -46,7 +46,14 @@ public class LoginPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
+
         signIn = findViewById(R.id.SignIn);
+        generateOtp = findViewById(R.id.GenerateOtp);
+        phoneNumberEditText = findViewById(R.id.phoneNumber);
+        otpEditText = findViewById(R.id.otp);
+
+        otpEditText.setVisibility(View.GONE);
+        signIn.setVisibility(View.GONE);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -63,6 +70,7 @@ public class LoginPage extends AppCompatActivity {
     public void onGenerateOtpClicked(View view){
 
         phoneNumberEditText = findViewById(R.id.phoneNumber);
+
         number = phoneNumberEditText.getText().toString();
 
         if (number.isEmpty()){
@@ -95,6 +103,12 @@ public class LoginPage extends AppCompatActivity {
                 super.onCodeSent(s, forceResendingToken);
                 Log.d(TAG,"Code sent");
                 codeSent = s;
+                phoneNumberEditText.setVisibility(View.GONE);
+                generateOtp.setVisibility(View.GONE);
+
+                otpEditText.setVisibility(View.VISIBLE);
+                signIn.setVisibility(View.VISIBLE);
+                otpEditText.requestFocus();
             }
 
             @Override
@@ -114,10 +128,8 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void onSignInClick(View view){
-        otpEditText = findViewById(R.id.otp);
 
         otpEntered = otpEditText.getText().toString();
-
         verifyOtpCode();
     }
 

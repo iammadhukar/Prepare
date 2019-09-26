@@ -36,7 +36,7 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        myViewModel = new MyViewModel(this);
+        myViewModel = MyViewModel.getInstance(this);
 //        myViewModel.accessDatabase();
         textTimer = findViewById(R.id.timeLeft);
         question = findViewById(R.id.question);
@@ -132,9 +132,11 @@ public class Test extends AppCompatActivity {
     }
 
     public void onSubmit(View view){
-        myViewModel.myRepository.deleteData();
+
+//        calculateResult();
+//
+//        myViewModel.myRepository.deleteData();
         count=0;
-//        myViewModel.myRepository.deleteDatabase();
         Toast.makeText(this, "Data deleted", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Result.class);
         startActivity(intent);
@@ -163,6 +165,9 @@ public class Test extends AppCompatActivity {
         }
     }
 
+    private void calculateResult(){
+        myViewModel.calculateResult();
+    }
 
     @Override
     public void onBackPressed() {

@@ -20,6 +20,7 @@ public class Welcome extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(1000);
+//                    startActivity(new Intent(Welcome.this, LoginPage.class));
                     startActivity(new Intent(Welcome.this, LoginPage.class));
                     finish();
                 } catch (InterruptedException e) {
