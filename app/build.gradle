@@ -19,11 +19,28 @@ android {
         }
 
     }
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file("prepareKey.jks");
+            storePassword ("P@9835402474");
+            keyAlias "prepareappkey";
+            keyPassword "Pp@9835402474"
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            debuggable false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseConfig
         }
+        debug {
+            versionNameSuffix "-debug"
+            debuggable true
+        }
+
     }
 }
 
@@ -49,6 +66,9 @@ dependencies {
     def room_version = '2.2.0-beta01' // 2.1.0 for latest stable version
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    //Pie chart dependency
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
 
 }

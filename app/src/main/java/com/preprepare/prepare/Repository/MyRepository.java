@@ -70,6 +70,7 @@ public class MyRepository extends ViewModel {
     }
 
     public void deleteData(){
+        deleteAsyncTask = new DeleteAsyncTask();
         deleteAsyncTask.execute();
     }
 
@@ -152,6 +153,7 @@ public class MyRepository extends ViewModel {
         protected MyModel doInBackground(Void... voids) {
             Log.d(TAG, "Data is fetching from Room");
             Log.d(TAG, "position is : "+position);
+            Log.d(TAG, "Myappdatabase is : "+myAppDatabase.questionDao().getQuestionDetails(position));
             Log.d(TAG, "Question : "+ myAppDatabase.questionDao().getQuestionDetails(position).getQuestion());
             return myAppDatabase.questionDao().getQuestionDetails(position);
         }

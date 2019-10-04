@@ -21,7 +21,7 @@ public class Welcome extends AppCompatActivity {
                 try {
                     Thread.sleep(1000);
 //                    startActivity(new Intent(Welcome.this, LoginPage.class));
-                    startActivity(new Intent(Welcome.this, LoginPage.class));
+                    startActivity(new Intent(Welcome.this, Dashboard.class));
                     finish();
                 } catch (InterruptedException e) {
                     e.printStackTrace();

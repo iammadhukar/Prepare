@@ -106,8 +106,8 @@ public class Test extends AppCompatActivity {
 
     private void timer(){
 
-        new CountDownTimer(1500000, 1000) {
-            int time=25;
+        new CountDownTimer(60000, 1000) {
+            int time=1;
             int sec=00;
 
             public void onTick(long millisUntilFinished) {
@@ -120,7 +120,7 @@ public class Test extends AppCompatActivity {
             }
 
             public void onFinish() {
-                textTimer.setText("try again");
+                submitTest();
             }
 
             public String checkDigit(int number) {
@@ -136,6 +136,10 @@ public class Test extends AppCompatActivity {
 //        calculateResult();
 //
 //        myViewModel.myRepository.deleteData();
+        submitTest();
+    }
+
+    private void submitTest(){
         count=0;
         Toast.makeText(this, "Data deleted", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, Result.class);
@@ -178,6 +182,7 @@ public class Test extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         myViewModel.myRepository.deleteData();
+        myViewModel=null;
 
     }
 
